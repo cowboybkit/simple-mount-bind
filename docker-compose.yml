@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  crawler:
+    image: cowboybkit/simple-mount-bind
+    container_name: crawler-app
+    restart: always
+    networks:
+      - crawler-tier
+    build:
+     context: .
+     dockerfile: Dockerfile
+    ports:
+      - 8000:3000
+    volumes:
+      - /Users/koideveloper/Documents/5_Working/Projects/25_Docker/Data/crawler/todos:/etc/todos
+      # - /app/:/Users/koideveloper/Documents/5_Working/Projects/25_Docker/myapp/getting-started/app/
+
+  
+networks:
+  crawler-tier:
+    driver: bridge
